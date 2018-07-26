@@ -4,10 +4,10 @@ The bcp_plot_function.R plots the results of two different bayesian change-point
 Here I provide two example files illustrating the function using artificial datasets.
 
 ## Example 1
-Change-point analysis of a sequence **with a change in mean and with constant sediment-accumulation rates**.
+Change-point analyses of a sequence **with a change in mean and with constant sediment-accumulation rates**.
 
 ## Example 2
-Change-point analysis of a sequence **without a change in mean, but with a substantial change in sediment-accumulation rates** that causes the emergence of a change point.
+Change-point analyses of a sequence **without a change in mean, but with a substantial change in sediment-accumulation rates** that causes the emergence of a change point.
 
 
 # For further reading
