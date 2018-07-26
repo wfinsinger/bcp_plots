@@ -1,5 +1,6 @@
 ### Example 1 ####
-# Change-point analysis of a sequence with a change in mean
+# Change-point analysis of a sequence with a change in mean.
+# With constant sediment-accumulation rates.
 
 #### Load libraries and R functions ####
 library(changepoint)

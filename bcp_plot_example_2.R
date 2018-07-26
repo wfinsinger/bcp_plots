@@ -1,4 +1,7 @@
-rm(list=ls())
+### Example 2 ####
+# Change-point analysis of a sequence with a change in mean.
+# With a change in sediment-accumulation rates.
+
 
 #### Load libraries and R functions ####
 library(paleofire)
@@ -71,3 +74,4 @@ interval.prob(bcp.0, 90, 110) # (estimates the probability of at least one chang
 # Extract Breakpoints from BP analyses
 bp.0.changes <- data.frame(bp.0, bcp.data$CmI[bp.0], bcp.data$AgeI[bp.0])
 colnames(bp.0.changes) <- c("Position", "CmI", "AgeI")
+
