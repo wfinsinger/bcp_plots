@@ -1,4 +1,5 @@
-rm(list=ls())
+### Example 1 ####
+# Change-point analysis of a sequence with a change in mean
 
 #### Load libraries and R functions ####
 library(changepoint)
@@ -17,12 +18,12 @@ AgeI <- seq(0, 2000, 10) # continuous sequence of sample ages
 prox.dat <- data.frame(CmI, AgeI)
 
 sedArI <- diff(prox.dat$CmI) / diff(prox.dat$AgeI)  # calculate sediment-accumulation rates (here constant)
-prox.dat$sedArI <- c(sedArI, NA)
+prox.dat$sedArI <- c(sedArI, NA)                    # add an NA in the last cell
 prox.dat$countI <- c(rpois(100, 15), rpois(101, 3)) # draw counts from poisson distribution with given means
 prox.dat$volI <- 1
 prox.dat$ConcI <- prox.dat$countI / prox.dat$volI # calculate concentrations
 prox.dat$ArI <- prox.dat$ConcI * prox.dat$sedArI  # calculate proxy-accumulation rate
-prox <- prox.dat[-nrow(prox.dat), ] # delete last row because sedArI=NA
+prox <- prox.dat[-nrow(prox.dat), ] # delete last row because sedArI=NA in the last cell
 
 
 
@@ -33,12 +34,13 @@ plot(ansmeanvar, cpt.width=3)
 print(ansmeanvar)
 
 # Performs test to investigate influence of sediment-accumulation rate on proxy-accumulation rate
-cpt1 <- proxy.cpt(serie=prox, Name="Example_cpt_analysis", bootstrap=F)
 # NB: there is no influence because sediment-accumulation rates are constant in this example
+cpt1 <- proxy.cpt(serie=prox, Name="Example_cpt_analysis", bootstrap=F)
+
 
 
 ### Performs bayesian change-point analyses ####
-# Define dataset
+# Define dataset and series
 bcp.data <- prox
 series <- prox$ArI
 
@@ -61,9 +63,9 @@ dev.off()
 bcp.0.postprob <- data.frame(bcp.data$AgeI, bcp.0$posterior.prob)
 colnames(bcp.0.postprob) <- c("AgeI", "Posterior Probs")
 
-interval.prob(bcp.0, 90, 110) # (estimates the probability of at least one change point
+interval.prob(bcp.0, 90, 110) # Estimates the probability of at least one change point
 #                                  in the specified interval of sequential observations.
-#                                 thus, 1000 cal yr BP)
+#                                 thus, 1000 cal yr BP
 
 # Extract Breakpoints from BP analyses
 bp.0.changes <- data.frame(bp.0, bcp.data$CmI[bp.0], bcp.data$AgeI[bp.0])
